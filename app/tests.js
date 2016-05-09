@@ -2,7 +2,7 @@ import expect from 'expect';
 import Immutable from 'seamless-immutable';
 import reducer from './reducer.js';
 
-runTests();
+//runTests();
 
 function runTests() {
   newGameTest();

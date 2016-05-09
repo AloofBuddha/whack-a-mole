@@ -7,7 +7,9 @@ const initialState = Immutable({
   moles: _.times(9, i => ({
     index: i,
     isOut: false
-  }))
+  })),
+  scoreToWin: 10,
+  score: 0
 });
 
 export default function reducer(state = initialState, action) {
@@ -24,7 +26,7 @@ export default function reducer(state = initialState, action) {
     case 'GAMESTATE_END': 
       return state
         .update('gameState', () => 
-          state.score >= action.scoreToWin ? 'win': 'lose')
+          state.score >= state.scoreToWin ? 'win' : 'lose')
         .set('moles', state.moles.map(mole =>
           mole.set('isOut', false) 
         ));

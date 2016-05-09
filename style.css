@@ -1,0 +1,92 @@
+body {
+  background-color: aliceblue;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+#app {
+  width: 800px;
+}
+
+h1 {
+  text-align: center;
+}
+
+.gameboard {
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: center;
+  margin: auto;
+  width: 550px;
+  background-color: brown;
+}
+
+.score {
+  text-align: center;
+  font-size: x-large;
+  margin: 10px auto;
+}
+
+.status {
+  text-align: center;
+  font-size: xx-large;
+  margin: 10px auto;
+}
+
+.hidden {
+  visibility: hidden;
+}
+
+.visible {
+  visibility: visible;
+}
+
+.start-button {
+    display: block;
+    min-width: 550px;
+    margin: 10px auto;
+    background: darkgrey;
+    font-size: x-large;
+}
+
+.hole {
+  padding: 20px;
+  margin: 10px;
+  width: 100px;
+  height: 100px;
+  border: solid black;
+  border-radius: 50%;
+  background-color: black; 
+}
+
+.mole {
+  position: relative;
+  width: 0;
+}
+
+.pop-out {
+  animation-name: pop-out;
+  animation-duration: 1s;
+  animation-fill-mode: forwards;
+}
+
+.red {
+  color: red; 
+}
+
+.green {
+  color: green;
+}
+
+@keyframes pop-out {
+  0% {
+    width: 0;
+    left: 0;
+    top: 0;
+  }
+  100% {
+    width: 155%;
+    left: -20px;
+    top: -24px;
+  }

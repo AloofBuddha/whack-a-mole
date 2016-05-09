@@ -7,8 +7,7 @@ import './app/tests.js';
 
 // Configurable values
 const gameLength = 15000, // in ms
-      scoreToWin = 10,
-      moleOutLength = 1800,
+      moleOutLength = 2000,
       numRounds = 5,
       molesPerRound = 3,
       roundLength = gameLength/numRounds;
@@ -41,7 +40,7 @@ function startGame() {
   // set a timeout to dispatch the 'game end' message
   setTimeout(() => {
     clearInterval(roundInterval);
-    store.dispatch({ type: 'GAMESTATE_END', scoreToWin })
+    store.dispatch({ type: 'GAMESTATE_END' })
   }, gameLength);
 }
 

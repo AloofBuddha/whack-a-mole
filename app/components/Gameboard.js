@@ -5,14 +5,9 @@ export default class Gameboard extends React.Component {
 
   render () {
     const { moles, onMoleClick } = this.props;
-    const style = {
-      display: 'flex',
-      flexFlow: "row wrap",
-      maxWidth: '450px'
-    };
 
     return (
-      <div style={style}>
+      <div className="gameboard">
         {moles.map((mole) => 
           <Mole key={mole.index} 
                 isOut={mole.isOut}
