@@ -3,33 +3,44 @@ import _ from 'lodash';
 
 export default class Status extends React.Component {
   render() {
-    const {gameState, score, scoreToWin} = this.props;
+    const { gameState, onStart, score, total } = this.props;
 
     return (
-      <div>
-        <div className={getScoreClass(gameState)}>
-          <span className={score >= scoreToWin ? 'green' : 'red'}>{score}</span>/{scoreToWin}
-        </div>
-        <div className={getStatusClass(gameState)}>
-          {
-            gameState === 'win' ? 'You WON!' :
-            gameState === 'lose' ? 'You LOST!' : <br/>
-          }
-        </div>
+      <div className="status-menu">
+        {
+          gameState === 'unstarted' ? 
+            renderUnstarted(onStart)
+          : gameState === 'started' ? 
+            renderStarted(score, total)
+          : renderGameOver(score, onStart)
+        }
       </div>
     );
   }
 }
 
-function getScoreClass(gameState) {
-  const visibility = gameState === 'unstarted' ? 'hidden' : 'visible';
-  return `score ${visibility}`;
+function renderUnstarted(onStart) {
+  return (
+    <div onClick={onStart}>
+      <h1>Whack-A-Mole</h1> 
+      <h3>Whack here here to start</h3>
+    </div>
+  );
 }
 
-function getStatusClass(gameState) {
-  const visibilityAndColor = 
-    gameState === 'win' ? 'visible green' : 
-    gameState === 'lose' ? 'visible red' : 'hidden';
-  
-  return `status ${visibilityAndColor}`;
+function renderStarted(score, total) {
+  return (
+    <h2>Score: {score}</h2>
+      // could add timer here
+  );
+}
+
+function renderGameOver(score, onStart) {
+  return (
+    <div onClick={onStart}>
+      <h1>Game Over</h1> 
+      <h2>You scored {score} point(s)!</h2>
+      <h3>Whack here to play again</h3>
+    </div>
+  );
 }

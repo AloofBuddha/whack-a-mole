@@ -1,3 +1,8 @@
+* {
+  cursor: inherit;
+  cursor: url(assets/mallet.png), auto;
+}
+
 body {
   background-color: aliceblue;
   display: flex;
@@ -7,10 +12,8 @@ body {
 
 #app {
   width: 800px;
-}
-
-h1 {
-  text-align: center;
+  background-image: url(assets/grass-texture.png);
+  background-repeat:repeat;
 }
 
 .gameboard {
@@ -19,7 +22,6 @@ h1 {
   justify-content: center;
   margin: auto;
   width: 550px;
-  background-color: brown;
 }
 
 .score {
@@ -28,10 +30,12 @@ h1 {
   margin: 10px auto;
 }
 
-.status {
+.status-menu {
+  height: 120px;
   text-align: center;
-  font-size: xx-large;
-  margin: 10px auto;
+  font-family: monospace;
+  background-color: rgba(0,0,0,0.5);
+  color: red;
 }
 
 .hidden {
@@ -55,9 +59,9 @@ h1 {
   margin: 10px;
   width: 100px;
   height: 100px;
-  border: solid black;
+  border: brown ridge 9px;
   border-radius: 50%;
-  background-color: black; 
+  background-color: rgba(50,50,50,1);
 }
 
 .mole {
@@ -69,14 +73,6 @@ h1 {
   animation-name: pop-out;
   animation-duration: 1s;
   animation-fill-mode: forwards;
-}
-
-.red {
-  color: red; 
-}
-
-.green {
-  color: green;
 }
 
 @keyframes pop-out {

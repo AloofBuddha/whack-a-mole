@@ -10,7 +10,6 @@ ES6! Hot-reloading! Mostly reliable.
 
 
 ----
-
 Task:
 Write a whack-a-mole game.
  
@@ -27,3 +26,6 @@ Utilizing closures to control variable scope
 Feel free to take as much time as you'd like to complete the assignment and come up with something you are happy with. It helps if you write about how you approached the assignment, and why you made the choices you did. Feel free to do this as inline comments or as a README.
 
 Thanks!
+-----------------
+
+Explain why you chose your stack

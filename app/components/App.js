@@ -10,27 +10,17 @@ export default class App extends React.Component {
 
     return (
       <div>
-        <h1>Whack-A-Mole</h1>
         <Status 
+          onStart={onStart}
           gameState={gameState}
           score={score}
-          scoreToWin={scoreToWin}
         />
         <Gameboard 
           moles={moles} 
           onMoleClick={onMoleClick}
+          gameState={gameState}
         />
-        <button 
-          onClick={onStart} 
-          className={getButtonClass(gameState)}>
-            { gameState === 'unstarted' ? 'Start Game' : 'Play Again' }
-        </button> 
       </div>
     );
   }
-}
-
-function getButtonClass(gameState) {
-  const visibility = gameState === 'started' ? 'hidden' : 'visible';
-  return `start-button ${visibility}`;
 }

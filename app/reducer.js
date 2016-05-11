@@ -8,8 +8,8 @@ const initialState = Immutable({
     index: i,
     isOut: false
   })),
-  scoreToWin: 10,
-  score: 0
+  molesPerRound: 15,
+  round: 1
 });
 
 export default function reducer(state = initialState, action) {
@@ -46,13 +46,6 @@ export default function reducer(state = initialState, action) {
 
     default:
       return state;
-  }
-}
-
-// takes a single mole or an array of moles and makes them appear
-function moleComesOut(mole) {
-  if (_.isArray(mole)) {
-    mole.map(moleComesOut)
   }
 }
 

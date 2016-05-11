@@ -6,13 +6,13 @@ export default class Mole extends React.Component {
 
     return (
       <span className="hole" onClick={onMoleClick}>
-      <img className={getMoleClass(isOut)} src="images/mole.png"/>
+        <img className={getMoleClass(isOut)} src="assets/mole.png"/>
       </span>
     );
   }
 }
 
 function getMoleClass(isOut) {
-  const animation = isOut ? 'pop-out' : 'pop-in'; 
+  const animation = isOut ? 'pop-out' : ''; 
   return `mole ${animation}`;
 }

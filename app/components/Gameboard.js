@@ -4,10 +4,10 @@ import Mole from './Mole.js';
 export default class Gameboard extends React.Component {
 
   render () {
-    const { moles, onMoleClick } = this.props;
+    const { moles, onMoleClick, gameState } = this.props;
 
     return (
-      <div className="gameboard">
+      <div className="gameboard with-mallet">
         {moles.map((mole) => 
           <Mole key={mole.index} 
                 isOut={mole.isOut}
@@ -16,4 +16,8 @@ export default class Gameboard extends React.Component {
       </div>
     );
   }
+}
+// {withMallet(gameState)}
+function withMallet(gameState) {
+  return gameState === 'started' ? 'with-mallet' : '';
 }
