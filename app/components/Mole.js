@@ -2,17 +2,24 @@ import React from 'react';
 
 export default class Mole extends React.Component {
   render() {
-    const { isOut, onMoleClick } = this.props;
+    const { moleState, onMoleClick } = this.props;
 
     return (
-      <span className="hole" onClick={onMoleClick}>
-        <img className={getMoleClass(isOut)} src="assets/mole.png"/>
-      </span>
+      <div className={getHoleClass(moleState)} onClick={onMoleClick}>
+        <img className={getMoleClass(moleState)} src="assets/mole.png"/>
+      </div>
     );
   }
 }
 
-function getMoleClass(isOut) {
-  const animation = isOut ? 'pop-out' : ''; 
-  return `mole ${animation}`;
+function getMoleClass(moleState) {
+  const moleClass = 
+    moleState === 'out' ? 'pop-out' : ''; 
+  return `mole ${moleClass}`;
+}
+
+function getHoleClass(moleState) {
+  const holeClass = 
+    moleState === 'hit' ? 'mole-hit' : ''; 
+  return `hole ${holeClass}`;
 }

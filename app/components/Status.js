@@ -3,7 +3,7 @@ import _ from 'lodash';
 
 export default class Status extends React.Component {
   render() {
-    const { gameState, onStart, score, total } = this.props;
+    const { gameState, onStart, score, highScore, time } = this.props;
 
     return (
       <div className="status-menu">
@@ -11,8 +11,10 @@ export default class Status extends React.Component {
           gameState === 'unstarted' ? 
             renderUnstarted(onStart)
           : gameState === 'started' ? 
-            renderStarted(score, total)
-          : renderGameOver(score, onStart)
+            renderStarted(score, time)
+          : gameState === 'gameover' ? 
+            renderGameOver(score, highScore, onStart)
+          : null
         }
       </div>
     );
@@ -28,18 +30,30 @@ function renderUnstarted(onStart) {
   );
 }
 
-function renderStarted(score, total) {
+function renderStarted(score, time) {
+  const date = new Date(time),
+        format = time => time < 10 ? '0' + time : time,
+        minutes = format(date.getMinutes()),
+        seconds = format(date.getSeconds());
+
   return (
-    <h2>Score: {score}</h2>
-      // could add timer here
+    <div>
+      <h2>Score: {score}</h2>
+      <h3>Timer: {minutes}:{seconds}</h3>
+    </div>  
   );
 }
 
-function renderGameOver(score, onStart) {
+function renderGameOver(score, highScore, onStart) {
   return (
     <div onClick={onStart}>
       <h1>Game Over</h1> 
       <h2>You scored {score} point(s)!</h2>
+      {
+        score > highScore ?
+        <h2>That's a new High Score!</h2>
+        : <h2>High Score: {highScore} points</h2>
+      }
       <h3>Whack here to play again</h3>
     </div>
   );

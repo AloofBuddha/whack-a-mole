@@ -1,20 +1,39 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import { createStore } from 'redux';
+import Immutable from 'seamless-immutable';
+import _ from 'lodash';
 import reducer from './app/reducer.js';
 import App from './app/components/App.js';
 import './app/tests.js';
 
-// Configurable
-const gameLength = 30000; // 30s
-const roundLength = 1000; // the time in between new moles popping up
+// CONFIGURABLE
+const gameLength = 30000, // 30000 milliseconds = 30s
+      roundLength = 1000, // the time in between new moles popping up
+      molesPerRoundLow = 1, // low/high of how many moles per round
+      molesPerRoundHigh = 4,
+      moleOutLengthLow = 1500, // low/high of how long a mole stays out
+      moleOutLengthHigh = 2500;
 
-const store = createStore(reducer);
+// REDUX SETUP
+const initialState = Immutable({
+  // unstarted | new | gameover 
+  gameState: 'unstarted',
+  moles: _.times(9, i => ({
+    index: i,
+    // out, in, hit
+    moleState: 'in'
+  })),
+  gameLength
+});
+
+const store = createStore(reducer, initialState);
 // render on every store change
 store.subscribe(render);
 // render once, to begin
 render();
 
+// RENDER FUNCTION
 function render() {
   ReactDOM.render(
     <App 
@@ -25,6 +44,7 @@ function render() {
     document.getElementById('app'));
 }
 
+// GAME LOGIC
 function startGame() {
   const gameState = store.getState().gameState;
   const audio = new Audio('assets/whack.mp3');
@@ -34,36 +54,44 @@ function startGame() {
     store.dispatch({ type: 'GAMESTATE_START' });
   }
   
-  triggerRound();
+  const roundInterval = triggerRound();
+  const clockInterval = triggerClock();
 
   // set a timeout to dispatch the 'game end' message
   setTimeout(() => {
-    store.dispatch({ type: 'GAMESTATE_END' })
+    clearInterval(roundInterval);
+    clearInterval(clockInterval);
+    store.dispatch({ type: 'GAMESTATE_END' });
   }, gameLength);
 }
 
 function triggerRound() {
   const moles = store.getState().moles,
-       roundLength = _.random(500, 2000),
-       indexList = _.range(moles.length),
-       molesThisRound = _.random(2, 5);
+        molesIn = _.filter(moles, mole => mole.moleState === 'in'),
+        indexList = _.map(molesIn, mole => mole.index),
+        molesThisRound = _.random(molesPerRoundLow, molesPerRoundHigh);
 
   // get a list of n random, unique indexes and trigger those moles
-  setTimeout(() => {
+  return setInterval(() => {
     _.sampleSize(indexList, molesThisRound).map(triggerMole);
-    triggerRound(); // trigger the next round
   }, roundLength);
 }
 
-function triggerMole(i) {
-  // mole stays out between 1 and 5 seconds
-  const moleOutLength = _.random(1000, 5000);
+function triggerClock() {
+  // dispatch a 'tick' every second
+  return setInterval(() => 
+    store.dispatch({ type: 'TICK' }), 1000);
+}
 
-  store.dispatch({ type: 'MOLE_COMES_OUT', index: i });
+function triggerMole(index) {
+  // mole stays out between 1 and 3 seconds
+  const moleOutLength = _.random(moleOutLengthLow, moleOutLengthHigh);
+
+  store.dispatch({ type: 'MOLE_COMES_OUT', index });
   
   // set a timeout to dispatch the 'mole goes in' message
   setTimeout(() => 
-    store.dispatch({ type: 'MOLE_GOES_IN', index: i }), 
+    store.dispatch({ type: 'MOLE_GOES_IN', index }), 
   moleOutLength);
 }
 
@@ -72,9 +100,9 @@ function onMoleClick(index) {
 
   return function () {
     // only send the message if clicked mole is currently out
-    if (store.getState().moles[index].isOut) {
+    if (store.getState().moles[index].moleState === 'out') {
       audio.play();
-      store.dispatch({ type: 'MOLE_HIT', index: index });
+      store.dispatch({ type: 'MOLE_HIT', index });
     }
   }
 }

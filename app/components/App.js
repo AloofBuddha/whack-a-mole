@@ -1,12 +1,11 @@
 import React from 'react';
-import _ from 'lodash';
 import Gameboard from './Gameboard.js';
 import Status from './Status.js';
 
 export default class App extends React.Component {
   render() {
     const {state, onStart, onMoleClick} = this.props;
-    const {moles, gameState, score, scoreToWin} = state;
+    const {moles, gameState, score, highScore, time} = state;
 
     return (
       <div>
@@ -14,6 +13,8 @@ export default class App extends React.Component {
           onStart={onStart}
           gameState={gameState}
           score={score}
+          highScore={highScore}
+          time={time}
         />
         <Gameboard 
           moles={moles} 

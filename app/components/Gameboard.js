@@ -10,14 +10,10 @@ export default class Gameboard extends React.Component {
       <div className="gameboard with-mallet">
         {moles.map((mole) => 
           <Mole key={mole.index} 
-                isOut={mole.isOut}
+                moleState={mole.moleState}
                 onMoleClick={onMoleClick(mole.index)}/>
         )}
       </div>
     );
   }
-}
-// {withMallet(gameState)}
-function withMallet(gameState) {
-  return gameState === 'started' ? 'with-mallet' : '';
 }
