@@ -25,34 +25,12 @@ body {
   height: 600px;
 }
 
-.score {
-  text-align: center;
-  font-size: x-large;
-  margin: 10px auto;
-}
-
 .status-menu {
   height: 160px;
   text-align: center;
   font-family: monospace;
   background-color: rgba(0,0,0,0.5);
   color: red;
-}
-
-.hidden {
-  visibility: hidden;
-}
-
-.visible {
-  visibility: visible;
-}
-
-.start-button {
-    display: block;
-    min-width: 550px;
-    margin: 10px auto;
-    background: darkgrey;
-    font-size: x-large;
 }
 
 .hole {
@@ -77,13 +55,6 @@ body {
 .pop-out {
   animation-name: pop-out;
   animation-duration: 1s;
-  animation-fill-mode: forwards;
-}
-
-.pop-in {
-  animation-name: pop-out;
-  animation-duration: 1s;
-  animation-direction: reverse;
   animation-fill-mode: forwards;
 }
 

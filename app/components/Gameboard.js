@@ -7,7 +7,7 @@ export default class Gameboard extends React.Component {
     const { moles, onMoleClick, gameState } = this.props;
 
     return (
-      <div className="gameboard with-mallet">
+      <div className="gameboard">
         {moles.map((mole) => 
           <Mole key={mole.index} 
                 moleState={mole.moleState}
