@@ -18,9 +18,7 @@ function runTests() {
 }
 
 function testAction(initialState, expectedState, action) {
-  expect(
-    reducer(initialState, action)
-  ).toEqual(expectedState);
+  expect(reducer(initialState, action)).toEqual(expectedState);
 }
 
 function newGameTest() {
@@ -120,6 +118,7 @@ function molePopsOutTest() {
 }
 
 function moleGoesAwayTest() {
+  // we only expect index 8 to be out
   let initial = Immutable({
     gameState: 'started',
     score: 0,
@@ -132,7 +131,6 @@ function moleGoesAwayTest() {
     gameLength: 30000
   });
 
-  // we only expect index 8 to be out
   let expected = Immutable({
     gameState: 'started',
     score: 0,
@@ -166,7 +164,7 @@ function moleHitTest() {
     gameLength: 30000
   });
 
-  // we only expect index 8 to be out
+  // we only expect index 8 to be hit 
   let expected = Immutable({
     gameState: 'started',
     score: 1,
@@ -200,7 +198,7 @@ function tickTest() {
     gameLength: 30000
   });
 
-  // we only expect index 8 to be out
+  // 1000 ms are subtracted with each tick
   let expected = Immutable({
     gameState: 'started',
     score: 0,
