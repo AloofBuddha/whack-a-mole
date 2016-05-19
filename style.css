@@ -1,6 +1,5 @@
 * {
-  cursor: inherit;
-  cursor: url(assets/mallet.png), auto;
+  cursor: url(assets/mallet.png) 64 32, auto;
 }
 
 body {
