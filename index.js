@@ -52,17 +52,22 @@ function startGame() {
   if (gameState !== 'started') {
     audio.play();
     store.dispatch({ type: 'GAMESTATE_START' });
-  }
-  
-  const roundInterval = triggerRound();
-  const clockInterval = triggerClock();
 
-  // set a timeout to dispatch the 'game end' message
-  setTimeout(() => {
-    clearInterval(roundInterval);
-    clearInterval(clockInterval);
-    store.dispatch({ type: 'GAMESTATE_END' });
-  }, gameLength);
+    // dispatch a 'tick' every second
+    const clockInterval = setInterval(() => {
+      store.dispatch({ type: 'TICK' })
+    }, 1000);
+
+    // trigger a new round every roundLength
+    const roundsInterval = setInterval(triggerRound, 1000);
+
+    // set a timeout to dispatch the 'game end' message
+    setTimeout(() => {
+      clearInterval(roundsInterval);
+      clearInterval(clockInterval);
+      store.dispatch({ type: 'GAMESTATE_END' });
+    }, gameLength);
+  }
 }
 
 function triggerRound() {
@@ -71,28 +76,18 @@ function triggerRound() {
         indexList = _.map(molesIn, mole => mole.index),
         molesThisRound = _.random(molesPerRoundLow, molesPerRoundHigh);
 
-  // get a list of n random, unique indexes and trigger those moles
-  return setInterval(() => {
-    _.sampleSize(indexList, molesThisRound).map(triggerMole);
-  }, roundLength);
-}
+  _.sampleSize(indexList, molesThisRound).map(triggerMole);
 
-function triggerClock() {
-  // dispatch a 'tick' every second
-  return setInterval(() => 
-    store.dispatch({ type: 'TICK' }), 1000);
-}
+  function triggerMole(index) {
+    const moleOutLength = _.random(moleOutLengthLow, moleOutLengthHigh);
 
-function triggerMole(index) {
-  // mole stays out between 1 and 3 seconds
-  const moleOutLength = _.random(moleOutLengthLow, moleOutLengthHigh);
-
-  store.dispatch({ type: 'MOLE_COMES_OUT', index });
-  
-  // set a timeout to dispatch the 'mole goes in' message
-  setTimeout(() => 
-    store.dispatch({ type: 'MOLE_GOES_IN', index }), 
-  moleOutLength);
+    store.dispatch({ type: 'MOLE_COMES_OUT', index });
+    
+    // set a timeout to dispatch the 'mole goes in' message
+    setTimeout(() => {
+      store.dispatch({ type: 'MOLE_GOES_IN', index }) 
+    }, moleOutLength);
+  }
 }
 
 function onMoleClick(index) {
