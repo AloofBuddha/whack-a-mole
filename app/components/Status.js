@@ -25,7 +25,7 @@ function renderUnstarted(onStart) {
   return (
     <div onClick={onStart}>
       <h1>Whack-A-Mole</h1> 
-      <h3>Whack here here to start</h3>
+      <h3>Whack here to start</h3>
     </div>
   );
 }
