@@ -11,7 +11,7 @@ import './app/tests.js';
 const gameLength = 30000, // 30000 milliseconds = 30s
       roundLength = 1000, // the time in between new moles popping up
       molesPerRoundLow = 1, // low/high of how many moles per round
-      molesPerRoundHigh = 4,
+      molesPerRoundHigh = 3,
       moleOutLengthLow = 1500, // low/high of how long a mole stays out
       moleOutLengthHigh = 2500;
 
@@ -98,7 +98,7 @@ function triggerMole(index) {
 function onMoleClick(index) {
   const audio = new Audio('assets/whack.mp3');
 
-  return function () {
+  return function (event) {
     // only send the message if clicked mole is currently out
     if (store.getState().moles[index].moleState === 'out') {
       audio.play();
