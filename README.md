@@ -1,5 +1,6 @@
 Whack-a-mole
 ============
+[**PLAY NOW!**](http://kaizerroll.github.io/whack-a-mole/)
 
 Setup
 -----
