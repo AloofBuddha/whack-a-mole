@@ -12,8 +12,8 @@ Builds with webpack and webpack-dev-server, which are included in the devDepenci
 
 For best results, run this on a modern version of Chrome, as that's the environment it was tested in.
 
-About
------
+My Approach
+-----------
 This app uses React for the visual layer and Redux for the state management, along with Seamless-Immutable, a library for working with immutable data structures. One of the things I love about Redux is how you can design the core functionality of the app entirely in the model, which lends itself well to test-driven-development (as seen in `tests.js`). React + Redux + Immutable work nicely together, and I was able to build the entire app out of pure components, i.e. components which simply render based on their attributes and hold no internal state. What's nice about this is changes are very localized and updates to the state or the view were generally straight forward and painless.
 
 Redux gets you the 'state transitions' and React (naturally) reacts to these changes automatically. However, for the actual logic of the game to be implemented, I needed various game-logic functions to capture click events and dispatch messages to the Redux store when appropriate. This proved a little trickier, as whack-a-mole deal with a lot of 'timed' components (when the moles come out, how long they stay out, the clock ticking down, etc). I ended up doing this with timeouts and intervals, though I'm not fully satisfied with how clean and intuitive that ends up being. I've heard of something called a Redux 'Saga' that is made for such a problem, but it isn't implemented in this app.
