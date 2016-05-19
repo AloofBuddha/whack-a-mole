@@ -1,31 +1,23 @@
-Whack a mole
+Whack-a-mole
+============
 
-
-`npm install` to grab dependencies
+Setup
+-----
+`npm install` to download the dependencies
 `npm start` to run locally
 
-Serves on localhost:3030
+Serves on `localhost:3030`
 
-ES6! Hot-reloading! Mostly reliable.
+Builds with webpack and webpack-dev-server, which are included in the devDepencies of package.json. ES6! Hot-reloading!
 
+For best results, run this on a modern version of Chrome, as that's the environment it was tested in.
 
-----
-Task:
-Write a whack-a-mole game.
+About
+-----
+This app uses React for the visual layer and Redux for the state management, along with Seamless-Immutable, a library for working with immutable data structures. One of the things I love about Redux is how you can design the core functionality of the app entirely in the model, which lends itself well to test-driven-development (as seen in `tests.js`). React + Redux + Immutable work nicely together, and I was able to build the entire app out of pure components, i.e. components which simply render based on their attributes and hold no internal state. What's nice about this is changes are very localized and updates to the state or the view were generally straight forward and painless.
+
+Redux gets you the 'state transitions' and React (naturally) reacts to these changes automatically. However, for the actual logic of the game to be implemented, I needed various game-logic functions to capture click events and dispatch messages to the Redux store when appropriate. This proved a little trickier, as whack-a-mole deal with a lot of 'timed' components (when the moles come out, how long they stay out, the clock ticking down, etc). I ended up doing this with timeouts and intervals, though I'm not fully satisfied with how clean and intuitive that ends up being. I've heard of something called a Redux 'Saga' that is made for such a problem, but it isn't implemented in this app.
+
+Finally, the mole animations and custom cursor were all done in CSS. I found the CSS animations to be difficult to work with at times, and had a bug for a while with the custom cursor (it turns out the 'click-point' is the top-left by default, which was a transparent layer for my image). Because of these issues and the time-oriented nature of the game, another approach would have been to use a web-oriented game engine like Phaser.js, though I assumed for a project like this it was less desirable to use a heavy framework. That said, the more polish and animation I added the slower the app ran, so a v2 of this app would probably use HTML Canvas at the very least.
  
-Description:
-Whack-a-mole is a standard carnival/arcade game where, on a set interval, a number of moles would pop out of their holes, and you have to hit them on the head with a mallet attempting to hit as many as you can before time runs out.
- 
-What I'd like for you to do is create a simulated version of this using javascript.  There should be a grid of 'holes' that every few seconds a set number of 'moles' will show up in random positions.  The user has to click on the 'mole' to simulate whacking it, which should add 1 to their score.  After a certain number of rounds, report the users score to them.  Feel free to represent the holes and the moles however you'd like.
- 
-You're welcome to use whatever libraries you'd like. I'd like you to utilize the following technologies:
 
-Object oriented JavaScript
-Event delegation to handle user actions
-Utilizing closures to control variable scope
-Feel free to take as much time as you'd like to complete the assignment and come up with something you are happy with. It helps if you write about how you approached the assignment, and why you made the choices you did. Feel free to do this as inline comments or as a README.
-
-Thanks!
------------------
-
-Explain why you chose your stack
