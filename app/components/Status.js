@@ -6,14 +6,14 @@ export default class Status extends React.Component {
     const { gameState, onStart, score, highScore, time } = this.props;
 
     return (
-      <div className="status-menu">
+      <div className="status-menu" onClick={onStart}>
         {
           gameState === 'unstarted' ? 
-            renderUnstarted(onStart)
+            renderUnstarted()
           : gameState === 'started' ? 
             renderStarted(score, time)
           : gameState === 'gameover' ? 
-            renderGameOver(score, highScore, onStart)
+            renderGameOver(score, highScore)
           : null
         }
       </div>
@@ -21,9 +21,9 @@ export default class Status extends React.Component {
   }
 }
 
-function renderUnstarted(onStart) {
+function renderUnstarted() {
   return (
-    <div onClick={onStart}>
+    <div>
       <h1>Whack-A-Mole</h1> 
       <h3>Whack here to start</h3>
     </div>
@@ -44,9 +44,9 @@ function renderStarted(score, time) {
   );
 }
 
-function renderGameOver(score, highScore, onStart) {
+function renderGameOver(score, highScore) {
   return (
-    <div onClick={onStart}>
+    <div>
       <h1>Game Over</h1> 
       <h2>You scored {score} point(s)!</h2>
       {
