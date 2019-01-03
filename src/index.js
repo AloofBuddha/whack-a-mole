@@ -1,12 +1,22 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import './index.css';
+import store, { startGame, onMoleClick } from './store';
 import App from './App';
-import * as serviceWorker from './serviceWorker';
+import './index.css';
 
-ReactDOM.render(<App />, document.getElementById('root'));
+// REDUX CONFIG
+store.subscribe(render);
 
-// If you want your app to work offline and load faster, you can change
-// unregister() to register() below. Note this comes with some pitfalls.
-// Learn more about service workers: http://bit.ly/CRA-PWA
-serviceWorker.unregister();
+// INITIAL RENDER
+render();
+
+// RENDER FUNCTION
+function render() {
+  ReactDOM.render(
+    <App 
+      state={store.getState()}
+      onStart={startGame}
+      onMoleClick={onMoleClick}
+    />, 
+    document.getElementById('root'));
+}

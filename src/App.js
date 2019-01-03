@@ -1,28 +1,28 @@
-import React, { Component } from 'react';
-import logo from './logo.svg';
+import React from 'react';
+import Gameboard from './components/Gameboard.js';
+import Status from './components/Status.js';
 import './App.css';
 
-class App extends Component {
+export default class App extends React.Component {
   render() {
+    const {state, onStart, onMoleClick} = this.props;
+    const {moles, gameState, score, highScore, time} = state;
+
     return (
       <div className="App">
-        <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <p>
-            Edit <code>src/App.js</code> and save to reload.
-          </p>
-          <a
-            className="App-link"
-            href="https://reactjs.org"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Learn React
-          </a>
-        </header>
+        <Status 
+          onStart={onStart}
+          gameState={gameState}
+          score={score}
+          highScore={highScore}
+          time={time}
+        />
+        <Gameboard 
+          moles={moles} 
+          onMoleClick={onMoleClick}
+          gameState={gameState}
+        />
       </div>
     );
   }
 }
-
-export default App;

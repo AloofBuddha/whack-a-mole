@@ -1,0 +1,8 @@
+.Gameboard {
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: center;
+  margin: auto;
+  width: 550px;
+  height: 600px;
+}

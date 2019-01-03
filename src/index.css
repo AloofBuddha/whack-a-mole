@@ -1,3 +1,7 @@
+* {
+  cursor: url(./assets/mallet.png) 64 32, auto;
+}
+
 body {
   margin: 0;
   padding: 0;
@@ -6,9 +10,8 @@ body {
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-}
-
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
-    monospace;
+  background-color: aliceblue;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
