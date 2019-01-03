@@ -1,68 +1,24 @@
+Whack-a-mole
+============
+[**PLAY NOW!**](http://kaizerroll.github.io/whack-a-mole/)
+
+Setup
+-----
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
-## Available Scripts
+`npm install` to download the dependencies
+`npm start` to run locally
+`npm test` to run test suites
 
-In the project directory, you can run:
+Serves on `localhost:3000`
 
-### `npm start`
 
-Runs the app in the development mode.<br>
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+My Approach
+-----------
+This app uses React for the visual layer and Redux for the state management, along with Seamless-Immutable, a library for working with immutable data structures. One of the things I love about Redux is how you can design the core functionality of the app entirely in the model, which lends itself well to test-driven-development (as seen in `tests.js`). React + Redux + Immutable work nicely together, and I was able to build the entire app out of pure components, i.e. components which simply render based on their attributes and hold no internal state. What's nice about this is changes are very localized and updates to the state or the view were generally straight forward and painless.
 
-The page will reload if you make edits.<br>
-You will also see any lint errors in the console.
+Redux gets you the 'state transitions' and React (naturally) reacts to these changes automatically. However, for the actual logic of the game to be implemented, I needed various game-logic functions to capture click events and dispatch messages to the Redux store when appropriate. This proved a little trickier, as whack-a-mole deals with a lot of 'timed' components - when the moles come out, how long they stay out, the clock ticking down, etc. I ended up doing this with timeouts and intervals, though I'm not fully satisfied with how clean and intuitive that ends up being. I've heard of something called a Redux 'Saga' that is made for such a problem, but it isn't implemented in this app.
 
-### `npm test`
+Finally, the mole animations and custom cursor were all done in CSS. I found the CSS animations to be difficult to work with at times, and had a bug for a while with the custom cursor (it turns out the 'click-point' is the top-left by default, which was a transparent layer for my image). Because of these issues and the time-oriented nature of the game, another approach would have been to use a web-oriented game engine like Phaser.js, though I assumed for a project like this it was less desirable to use a heavy framework. That said, the more polish and animation I added the slower the app ran, so a v2 of this app would probably use HTML Canvas at the very least.
+ 
 
-Launches the test runner in the interactive watch mode.<br>
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
-
-### `npm run build`
-
-Builds the app for production to the `build` folder.<br>
-It correctly bundles React in production mode and optimizes the build for the best performance.
-
-The build is minified and the filenames include the hashes.<br>
-Your app is ready to be deployed!
-
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
-
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (Webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
-
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/code-splitting
-
-### Analyzing the Bundle Size
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size
-
-### Making a Progressive Web App
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app
-
-### Advanced Configuration
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/advanced-configuration
-
-### Deployment
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/deployment
-
-### `npm run build` fails to minify
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify
