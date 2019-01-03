@@ -7,9 +7,9 @@ Setup
 -----
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
-`npm install` to download the dependencies
-`npm start` to run locally
-`npm test` to run test suites
+- `npm install` to download the dependencies
+- `npm start` to run locally
+- `npm test` to run test suites
 
 Serves on `localhost:3000`
 

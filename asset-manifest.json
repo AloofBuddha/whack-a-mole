@@ -1,0 +1,16 @@
+{
+  "main.css": "/whack-a-mole/static/css/main.e13bce35.chunk.css",
+  "main.js": "/whack-a-mole/static/js/main.8212ad46.chunk.js",
+  "main.js.map": "/whack-a-mole/static/js/main.8212ad46.chunk.js.map",
+  "static/js/1.ad554e6a.chunk.js": "/whack-a-mole/static/js/1.ad554e6a.chunk.js",
+  "static/js/1.ad554e6a.chunk.js.map": "/whack-a-mole/static/js/1.ad554e6a.chunk.js.map",
+  "runtime~main.js": "/whack-a-mole/static/js/runtime~main.4a5d32f7.js",
+  "runtime~main.js.map": "/whack-a-mole/static/js/runtime~main.4a5d32f7.js.map",
+  "static/css/main.e13bce35.chunk.css.map": "/whack-a-mole/static/css/main.e13bce35.chunk.css.map",
+  "static/media/mole.png": "/whack-a-mole/static/media/mole.01c4e8db.png",
+  "static/media/index.css": "/whack-a-mole/static/media/mallet.016a06f6.png",
+  "static/media/App.css": "/whack-a-mole/static/media/grass-texture.1b92b004.png",
+  "index.html": "/whack-a-mole/index.html",
+  "precache-manifest.f0fbca90574e66629b2e4db23dff59d3.js": "/whack-a-mole/precache-manifest.f0fbca90574e66629b2e4db23dff59d3.js",
+  "service-worker.js": "/whack-a-mole/service-worker.js"
+}
