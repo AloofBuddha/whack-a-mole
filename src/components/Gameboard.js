@@ -9,7 +9,7 @@ export default class Gameboard extends React.Component {
 
     return (
       <div className="Gameboard">
-        {moles.map((mole) => 
+        {moles && moles.map((mole) => 
           <Mole key={mole.index} 
                 moleState={mole.moleState}
                 onMoleClick={onMoleClick(mole.index)}/>
