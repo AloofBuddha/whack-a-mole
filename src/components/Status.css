@@ -1,7 +1,8 @@
 .Status {
-  height: 160px;
+  height: 120px;
   text-align: center;
   font-family: monospace;
   background-color: rgba(0,0,0,0.5);
   color: red;
+  line-height: 1;
 }
