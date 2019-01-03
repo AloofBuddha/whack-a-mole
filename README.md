@@ -13,6 +13,8 @@ This project was bootstrapped with [Create React App](https://github.com/faceboo
 
 Serves on `localhost:3000`
 
+Project files in `src/`
+
 
 My Approach
 -----------
